@@ -14,30 +14,18 @@ class Review
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $rank_number = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
     #[ORM\Column]
     private ?int $product_id = null;
 
+    #[ORM\Column]
+    private ?int $user_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRankNumber(): ?float
-    {
-        return $this->rank_number;
-    }
-
-    public function setRankNumber(?float $rank_number): self
-    {
-        $this->rank_number = $rank_number;
-
-        return $this;
     }
 
     public function getText(): ?string
@@ -60,6 +48,18 @@ class Review
     public function setProductId(int $product_id): self
     {
         $this->product_id = $product_id;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

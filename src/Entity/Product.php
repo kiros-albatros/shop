@@ -44,6 +44,9 @@ class Product
     #[ORM\Column]
     private ?int $sales_count = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +168,18 @@ class Product
     public function setSalesCount(int $sales_count): self
     {
         $this->sales_count = $sales_count;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

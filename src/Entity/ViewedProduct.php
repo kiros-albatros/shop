@@ -19,9 +19,6 @@ class ViewedProduct
     #[ORM\Column]
     private ?int $product_id = null;
 
-    #[ORM\Column]
-    private ?int $price = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -47,18 +44,6 @@ class ViewedProduct
     public function setProductId(int $product_id): self
     {
         $this->product_id = $product_id;
-
-        return $this;
-    }
-
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): self
-    {
-        $this->price = $price;
 
         return $this;
     }
