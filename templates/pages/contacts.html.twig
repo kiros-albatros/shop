@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block mainContent %}
+
+
+<div class="Middle Middle_top">
+    {% include 'partial/header-line.html.twig' with {'title': 'Контакты', 'parent': 'Главная'} %}
+    
+    <div class="Section Section_column Section_columnRight Section_columnWide">
+      <div class="wrap">
+       {% include('partial/aside.html.twig') %}
+        <div class="Section-content">
+          <div class="Map">
+            <iframe src="https://yandex.ru/map-widget/v1/?scroll=false&amp;um=constructor%3Aab0c930ee3de165a0eaa7eab3c5e810a0019bf38d9c3e3b44ca793b8ba10aad9" allowfullscreen="true" style="display: block;" width="100%" height="100%" frameborder="0"></iframe>
+          </div>
+          <div class="Contacts Contacts_main">
+            <div class="Contacts-block">
+              <div class="media">
+                <div class="media-image"><img src="{{ asset('images/icons/contacts/phone.svg')}}" alt="phone.svg"></div>
+                <div class="media-content">Тел: 8-800-200-600</div>
+              </div>
+            </div>
+            <div class="Contacts-block">
+              <div class="media">
+                <div class="media-image"><img src="{{ asset('images/icons/contacts/address.svg')}}" alt="address.svg"></div>
+                <div class="media-content">
+                  Россия, Свердловская область, Каменск-Уральский, Заводской проезд, 1
+                </div>
+              </div>
+            </div>
+            <div class="Contacts-block">
+              <div class="media">
+                <div class="media-image"><img src="{{ asset('images/icons/contacts/mail.svg')}}" alt="mail.svg"></div>
+                <div class="media-content">Email: megano@skillbox_diploma.com</div>
+              </div>
+            </div>
+          </div>
+          <header class="Section-header Section-header_sm">
+            <h2 class="Section-title">Обратная связь</h2>
+          </header>
+          <form class="form form_contacts" action="#" method="post">
+            <div class="form-group">
+              <div class="row">
+                <div class="row-block">
+                  <input class="form-input" id="name" name="name" type="text" placeholder="Ваше Имя">
+                </div>
+                <div class="row-block">
+                  <input class="form-input" id="mail" name="mail" type="text" placeholder="Ваш Email">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-textarea" name="message" id="message" placeholder="Сообщение..."></textarea>
+            </div>
+            <div class="form-group"><a class="btn btn_muted form-btn" href="#">Отправить</a></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+{% endblock %}
