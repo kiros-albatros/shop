@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block mainContent %}
+
+	<div class="Middle Middle_top">
+		{% include 'partial/header-line.html.twig' with {'title': 'Каталог', 'parent': 'Главная'} %}
+
+		<div class="Section Section_column Section_columnLeft">
+			<div class="wrap">
+
+				{% include 'catalog/filter.html.twig' %}
+				{% include 'catalog/items.html.twig' %}
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -21,7 +21,7 @@
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</head>
-	<body class="Site"> {% block body %}{% endblock %}
+	<body class="Site">
 
 		<header class="Header">
 			<div class="ControlPanel">
@@ -62,24 +62,24 @@
 			<div class="wrap">
 				<div class="row Header-rowMain">
 					<div class="row-block Header-logo">
-						<a class="logo" href="index.html"><img class="logo-image" src="{{ asset('images/logo.png')}}" alt="logo.png"/></a>
+						<a class="logo" href="{{ path('app_main') }}"><img class="logo-image" src="{{ asset('images/logo.png')}}" alt="logo.png"/></a>
 					</div>
 					<nav class="row-block row-block_right Header-menu">
 						<div class="menuModal" id="navigate">
 							<ul class="menu menu_main">
 								<li class="menu-item">
-									<a class="menu-link" href="index.html">Главная</a>
+									<a class="menu-link" href="{{ path('app_main') }}">Главная</a>
 								</li>
 								<li class="menu-item">
 									<span class="menu-label menu-label_danger">Hot</span>
-									<a class="menu-link" href="catalog.html">Каталог</a>
+									<a class="menu-link" href="{{ path('app_catalog') }}">Каталог</a>
 								</li>
 								<li class="menu-item">
 									<span class="menu-label menu-label_success">New</span>
 									<a class="menu-link" href="sale.html">Скидки</a>
 								</li>
 								<li class="menu-item">
-									<a class="menu-link" href="contacts.html">Контакты</a>
+									<a class="menu-link" href="{{ path('app_contacts') }}">Контакты</a>
 								</li>
 							</ul>
 						</div>
@@ -254,5 +254,10 @@
 					</div>
 				</div>
 			</div>
-            {# {% block headerContent %}{% endblock %} #}
+
+			{% if is_main|default(false) == true %}
+				{% include '/main/main-slider.html.twig' %}
+			{% endif %}
+
 		</header>
+

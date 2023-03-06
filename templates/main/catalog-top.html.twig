@@ -1,0 +1,85 @@
+<div class="Section Section_column Section_columnLeft Section_columnDesktop">
+	<div
+		class="wrap">
+		{# <div class="Section-column">
+					<div class="Section-columnSection Section-columnSection_mark">
+						<header class="Section-columnHeader">
+							<strong class="Section-columnTitle">Предложение дня</strong>
+						</header>
+						<div class="Card">
+							<a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg" alt="card.jpg"></a>
+							<div class="Card-content">
+								<strong class="Card-title">
+									<a href="#">Corsair Carbide Series Arctic White Steel</a>
+								</strong>
+								<div class="Card-description">
+									<div class="Card-cost">
+										<span class="Card-priceOld">$115.00</span>
+										<span class="Card-price">$85.00</span>
+									</div>
+									<div class="Card-category">News / xbox</div>
+								</div>
+								<div class="CountDown" data-date="31.09.2020 03:59">
+									<div class="CountDown-block">
+										<div class="CountDown-wrap">
+											<div class="CountDown-days">-888</div>
+											<span class="CountDown-label">дней</span>
+										</div>
+									</div>
+									<div class="CountDown-block">
+										<div class="CountDown-wrap">
+											<div class="CountDown-hours">-14</div>
+											<span class="CountDown-label">часов</span>
+										</div>
+									</div>
+									<div class="CountDown-block">
+										<div class="CountDown-wrap">
+											<div class="CountDown-minutes">-34</div>
+											<span class="CountDown-label">минут</span>
+										</div>
+									</div>
+									<div class="CountDown-block">
+										<div class="CountDown-wrap">
+											<div class="CountDown-secs">-37</div>
+											<span class="CountDown-label">секунд</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> #}
+		<div class="Section-content" style="padding-left: 0px;">
+			<header class="Section-header">
+				<h2 class="Section-title">Каталог Топ товаров</h2>
+			</header>
+			<div class="Cards">
+				{% for i in 0..7 %}
+					<div class="Card">
+						<a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg')}}" alt="card.jpg"></a>
+						<div class="Card-content">
+							<strong class="Card-title">
+								<a href="#">Corsair Carbide Series Arctic White Steel</a>
+							</strong>
+							<div class="Card-description">
+								<div class="Card-cost">
+									<span class="Card-priceOld">$115.00</span>
+									<span class="Card-price">$85.00</span>
+								</div>
+								<div class="Card-category">Games / xbox
+								</div>
+								<div class="Card-hover">
+									<a class="Card-btn" href="#"><img src="{{ asset('images/icons/card/bookmark.svg')}}" alt="bookmark.svg"></a>
+									<a class="Card-btn" href="#"><img src="{{ asset('images/icons/card/cart.svg')}}" alt="cart.svg"></a>
+									<a class="Card-btn" href="compare.html"><img src="{{ asset('images/icons/card/change.svg')}}" alt="change.svg"></a>
+								</div>
+							</div>
+						</div>
+						<div class="Card-sale">-60%
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

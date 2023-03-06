@@ -340,7 +340,7 @@ var Slider = function(){
                 $this.slick({
                     dots: true,
                     arrows: true,
-                    autoplay: true,
+                    autoplay: false,
                     appendArrows: $navigate,
                     appendDots: $navigate,
                     autoplaySpeed: 3000

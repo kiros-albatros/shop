@@ -13,6 +13,7 @@ class MainController extends AbstractController
     {
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
+            'is_main' => true
         ]);
     }
 
@@ -21,6 +22,7 @@ class MainController extends AbstractController
     {
         return $this->render('pages/about.html.twig', [
             'controller_name' => 'MainController',
+            'is_main' => false
         ]);
     }
 
@@ -29,6 +31,7 @@ class MainController extends AbstractController
     {
         return $this->render('pages/contacts.html.twig', [
             'controller_name' => 'MainController',
+            'is_main' => false
         ]);
     }
 }
