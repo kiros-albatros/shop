@@ -4,7 +4,7 @@
 			<h1 class="Middle-title">{{title|default('О нас')}}</h1>
 			<ul class="breadcrumbs Middle-breadcrumbs">
 				<li class="breadcrumbs-item">
-					<a href="index.html">{{parent|default('Главная')}}</a>
+					<a href="{{ path('app_main') }}">{{parent|default('Главная')}}</a>
 				</li>
 				<li class="breadcrumbs-item breadcrumbs-item_current">
 					<span>{{title|default('О нас')}}</span>
