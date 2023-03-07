@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SellersController extends AbstractController
 {
-    #[Route('/sellers', name: 'app_sellers')]
-    public function index(): Response
+    #[Route('/seller/{slug}', name: 'app_seller_show')]
+    public function show(): Response
     {
-        return $this->render('sellers/index.html.twig', [
+        return $this->render('sellers/show.html.twig', [
             'controller_name' => 'SellersController',
         ]);
     }

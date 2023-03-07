@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block mainContent %}
+
+	<div class="Middle Middle_top">
+		{% include 'partial/header-line.html.twig' with {'title': 'Продавец ООО "Ромашка"', 'parent': 'Главная'} %}
+
+		<div class="Section Section_column Section_columnLeft Section_columnWide">
+			<div class="wrap">
+				<div class="Section-column">
+					<div class="Section-columnSection Section-columnSection_mark">
+						<div class="media media_middle">
+							<div class="media-image"><img src="{{ asset('images/icons/contacts/phone.svg')}}" alt="phone.svg">
+							</div>
+							<div class="media-content">Тел:
+								<nobr>+8 (200) 800-2000-600</nobr>
+							</div>
+						</div>
+					</div>
+					<div class="Section-columnSection Section-columnSection_mark">
+						<div class="media media_middle">
+							<div class="media-image"><img src="{{ asset('images/icons/contacts/address.svg')}}" alt="address.svg">
+							</div>
+							<div class="media-content">
+								У черта на куличиках 12
+							</div>
+						</div>
+					</div>
+					<div class="Section-columnSection Section-columnSection_mark">
+						<div class="media media_middle">
+							<div class="media-image"><img src="{{ asset('images/icons/contacts/mail.svg')}}" alt="mail.svg"></div>
+							<div class="media-content">Email: feedback@romashka.ru</div>
+						</div>
+					</div>
+				</div>
+				<div class="Section-content">
+					<div class="row row_verticalCenter row_maxHalf">
+						<div class="row-block">
+							<div class="pict"><img src="{{ asset('images/content/home/bigGoods.png')}}" alt="bigGoods.png">
+							</div>
+						</div>
+						<div class="row-block">
+							<h2>ООО "Ромашка"</h2>
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula eget dolor. Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eutu, pretiumem.
+							</p>
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetuer
+								</li>
+								<li>adipiscing elit doli. Aenean commodo ligula
+								</li>
+								<li>eget dolor. Aenean massa. Cumtipsu sociis
+								</li>
+								<li>natoque penatibus et magnis dis parturient
+								</li>
+								<li>montesti, nascetur ridiculus mus. Donec
+								</li>
+								<li>quam felis, ultricies nec, pellentesque eutu
+								</li>
+							</ul>
+						</div>
+					</div>
+					<header class="Section-header">
+						<h2 class="Section-title">Популярные товары продавца</h2>
+					</header>
+					<div class="Cards">
+
+						{% for i in 0..7 %}
+
+							<div class="Card">
+								<a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg')}}" alt="card.jpg"></a>
+								<div class="Card-content">
+									<strong class="Card-title">
+										<a href="#">Corsair Carbide Series Arctic White Steel</a>
+									</strong>
+									<div class="Card-description">
+										<div class="Card-cost">
+											<span class="Card-priceOld">$115.00</span>
+											<span class="Card-price">$85.00</span>
+										</div>
+										<div class="Card-category">Games / xbox
+										</div>
+										<div class="Card-hover">
+											<a class="Card-btn" href="#"><img src="{{ asset('images/icons/card/bookmark.svg')}}" alt="bookmark.svg"></a>
+											<a class="Card-btn" href="#"><img src="{{ asset('images/icons/card/cart.svg')}}" alt="cart.svg"></a>
+											<a class="Card-btn" href="#"><img src="{{ asset('images/icons/card/change.svg')}}" alt="change.svg"></a>
+										</div>
+									</div>
+								</div>
+								<div class="Card-sale">-60%
+								</div>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% endblock %}

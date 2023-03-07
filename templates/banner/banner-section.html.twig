@@ -1,10 +1,12 @@
 <div class="Section">
 	<div class="wrap">
 		<div class="BannersHome">
-			<a class="BannersHomeBlock" href="#">
+		{% if banners %}
+		{% for banner in banners %}
+			<a class="BannersHomeBlock" href="{{banner.href}}">
 				<div class="BannersHomeBlock-row">
 					<div class="BannersHomeBlock-block">
-						<strong class="BannersHomeBlock-title">Video Cards</strong>
+						<strong class="BannersHomeBlock-title">{{ banner.title }}</strong>
 						<div class="BannersHomeBlock-content">от
 							<span class="BannersHomeBlock-price">$199.00</span>
 						</div>
@@ -14,32 +16,8 @@
 					</div>
 				</div>
 			</a>
-			<a class="BannersHomeBlock" href="#">
-				<div class="BannersHomeBlock-row">
-					<div class="BannersHomeBlock-block">
-						<strong class="BannersHomeBlock-title">Head Phones</strong>
-						<div class="BannersHomeBlock-content">от
-							<span class="BannersHomeBlock-price">$210.00</span>
-						</div>
-					</div>
-					<div class="BannersHomeBlock-block">
-						<div class="BannersHomeBlock-img"><img src="{{ asset('images/content/home/videoca.png')}}" alt="videoca.png"></div>
-					</div>
-				</div>
-			</a>
-			<a class="BannersHomeBlock" href="#">
-				<div class="BannersHomeBlock-row">
-					<div class="BannersHomeBlock-block">
-						<strong class="BannersHomeBlock-title">Bass Speakers</strong>
-						<div class="BannersHomeBlock-content">от
-							<span class="BannersHomeBlock-price">$159.00</span>
-						</div>
-					</div>
-					<div class="BannersHomeBlock-block">
-						<div class="BannersHomeBlock-img"><img src="{{ asset('images/content/home/videoca.png')}}" alt="videoca.png"></div>
-					</div>
-				</div>
-			</a>
+		{% endfor %}
+		{% endif %}
 		</div>
 	</div>
 </div>
