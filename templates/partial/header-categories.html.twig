@@ -6,18 +6,19 @@
 			<div class="CategoriesButton-arrow"></div>
 		</div>
 		<div class="CategoriesButton-content">
-
-			{% for i in 0..9 %}
-				<div class="CategoriesButton-link">
+		{% if categories %}
+		{% for category in categories %}
+			<div class="CategoriesButton-link">
 					<a href="#">
-						<div class="CategoriesButton-icon"><img src="{{ asset('images/icons/departments/1.svg')}}" alt="1.svg"/>
+						<div class="CategoriesButton-icon"><img src="{{ asset(category.image)}}" alt="1.svg"/>
 						</div>
-						<span class="CategoriesButton-text">Accessories</span>
+						<span class="CategoriesButton-text">{{ category.name }}</span>
 					</a>
 				</div>
-			{% endfor %}
+		{% endfor %}
+		{% endif %}
 
-			{% for i in 0..3 %}
+			{# вложенные ссылки #}
 				<div class="CategoriesButton-link">
 					<a href="#">
 						<div class="CategoriesButton-icon"><img src="{{ asset('images/icons/departments/3.svg')}}" alt="3.svg"/>
@@ -38,7 +39,7 @@
 						</a>
 					</div>
 				</div>
-			{% endfor %}
+			{# вложенные ссылки #}
 		</div>
 	</div>
 </div>
