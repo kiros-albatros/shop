@@ -6,7 +6,7 @@
 			<div class="CategoriesButton-arrow"></div>
 		</div>
 		<div class="CategoriesButton-content">
-		{% if categories %}
+		{% if categories|default(false) %}
 		{% for category in categories %}
 			<div class="CategoriesButton-link">
 					<a href="#">
