@@ -1,22 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Сброс пароля{% endblock %}
 
 {% block mainContent %}
+        {% include 'partial/header-line.html.twig' with {'title': 'Сброс пароля', 'parent': 'Главная'} %}
+<div class="Section">
+    <div class="wrap">
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
-
-    {{ form_start(requestForm) }}
+    {{ form_start(requestForm, {'attr': {'class': 'form Authorization'}}) }}
+        <div class="form-group">
         {{ form_row(requestForm.email) }}
+        </div>
         <div>
             <small>
-                Enter your email address and we will send you a
-                link to reset your password.
+                Введите адрес почты, и мы отправим вам ссылку для сброса пароля
             </small>
         </div>
 
-        <button class="btn btn-primary">Send password reset email</button>
+        <div class="form-group">
+        <button class="btn btn_primary" style="margin-top: 25px;">Отправить письмо для сброса пароля</button>
+        </div>
     {{ form_end(requestForm) }}
+    </div>
+</div>
 {% endblock %}
