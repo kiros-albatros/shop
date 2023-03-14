@@ -27,7 +27,7 @@
                 <div class="Account">
                     <div class="Account-group">
                         <div class="Account-column">
-                            <div class="Account-avatar"><img src="{{ asset ('images/content/home/card.jpg')}}" alt="card.jpg">
+                            <div class="Account-avatar"><img src="{{ asset ( app.user.avatar|default('images/content/home/card.jpg') )}}" alt="card.jpg">
                             </div>
                         </div>
                         <div class="Account-column">
