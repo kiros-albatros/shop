@@ -3,23 +3,21 @@
 namespace App\DataFixtures;
 
 use App\Entity\Product;
+use App\Entity\Review;
 use Doctrine\Persistence\ObjectManager;
-
-// todo добавить связь с категориями
 
 class ProductFixtures extends BaseFixtures
 {
     public function loadData(ObjectManager $manager)
     {
 
-
-        $this->createMany(Product::class, 10, function (Product $product) use ($manager) {
+        $this->createMany(Product::class, 24, function (Product $product) use ($manager) {
             $product
                 ->setName($this->faker->word)
                 ->setImage($this->faker->url)
-                ->setDescription($this->faker->paragraph(75))
+                ->setDescription($this->faker->paragraph(45))
                 ->setPrice($this->faker->numberBetween(1, 2000))
-                ->setReviewsCount($this->faker->numberBetween(0, 50))
+                ->setReviewsCount($this->faker->numberBetween(0, 10))
                 ->setSellersCount($this->faker->numberBetween(0, 10))
                 ->setIsLimited($this->faker->boolean())
                 ->setDiscount($this->faker->numberBetween(0, 90))
@@ -27,7 +25,23 @@ class ProductFixtures extends BaseFixtures
                 ->setSalesCount($this->faker->numberBetween(1, 200))
                 ;
 
-            $manager->persist($product);
+            $review = (new Review())
+                ->setAuthorName('tester-tester')
+                ->setContent($this->faker->paragraph)
+                ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
+                ->setProduct($product)
+            ;
+
+            $manager->persist($review);
+
+            $review = (new Review())
+                ->setAuthorName('tester-tester')
+                ->setContent($this->faker->paragraph)
+                ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
+                ->setProduct($product)
+            ;
+
+            $manager->persist($review);
         });
     }
 }

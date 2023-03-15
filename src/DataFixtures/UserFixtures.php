@@ -7,8 +7,20 @@ use Doctrine\Persistence\ObjectManager;
 
 class UserFixtures extends BaseFixtures
 {
+
+private static $avatars =[
+'uploads/avatars/bulgakov.jpg',
+'uploads/avatars/Chekhov.jpg',
+'uploads/avatars/gogol.jpg',
+'uploads/avatars/london.jpg',
+'uploads/avatars/mayakovski.jpg',
+'uploads/avatars/pushkin.jpg',
+];
+
     public function loadData(ObjectManager $manager)
     {
+
+
 
 
         $this->createMany(User::class, 10, function (User $user) use ($manager) {
@@ -16,7 +28,9 @@ class UserFixtures extends BaseFixtures
                 ->setEmail($this->faker->email)
                 ->setName($this->faker->name)
                 ->setPassword('123456')
-                ->setRole('user');;
+                ->setPhone($this->faker->phoneNumber)
+                ->setAvatar($this->faker->randomElement(self::$avatars))
+            ;
 
             $manager->persist($user);
         });

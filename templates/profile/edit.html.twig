@@ -34,8 +34,9 @@
                                     <div class="form-group">
                                         <label class="form-label" for="avatar">Аватар
                                         </label>
-                                        <div class="Profile-avatar Profile-avatar_noimg">
-                                            <div class="Profile-img"><img src="{{ asset('form.avatar') }}" alt="#.png">
+                                        <div class="Profile-avatar">
+                                            <div class="Profile-img">
+                                                <img src="{{ asset(app.user.avatar|default('')) }}" alt="#.png">
                                             </div>
                                             {{ form_row(form.avatar) }}
                                         </div>

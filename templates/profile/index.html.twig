@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
-
 {% block mainContent %}
     {% include 'partial/header-line.html.twig' with {'title': 'Профиль', 'parent': 'Главная'} %}
     <div class="Section Section_column Section_columnLeft">
@@ -27,7 +25,8 @@
                 <div class="Account">
                     <div class="Account-group">
                         <div class="Account-column">
-                            <div class="Account-avatar"><img src="{{ asset ( app.user.avatar|default('images/content/home/card.jpg') )}}" alt="card.jpg">
+                            <div class="Account-avatar">
+                                <img src="{{ asset ( app.user.avatar|default('images/content/home/card.jpg') )}}" alt="card.jpg">
                             </div>
                         </div>
                         <div class="Account-column">
