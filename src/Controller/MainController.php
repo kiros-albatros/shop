@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\BannerRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,12 +15,14 @@ class MainController extends AbstractController
     protected $banners;
 
     #[Route('/', name: 'app_main')]
-    public function index(BannerRepository $bannerRepository, CategoryRepository $categoryRepository): Response
+    public function index(ProductRepository $productRepository, BannerRepository $bannerRepository, CategoryRepository $categoryRepository): Response
     {
         // аццкий костыль - переделать в сервис?
         $categories = $categoryRepository->findAll();
         $banners = $bannerRepository->findBy(['is_active' => 1]);
         $bannersToShow = [];
+        $topProducts = $productRepository->findBy([],['sort_index'=>'DESC'], 8);
+      //  dd($topProducts);
 
         for ($i=0; $i <= 2; $i++) { 
             $rand_index = rand(0, count($banners)-1);
@@ -33,6 +36,7 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
             'banners' => $bannersToShow,
             'categories' => $categories,
+            'topProducts'=>$topProducts,
             'is_main' => true
         ]);
     }

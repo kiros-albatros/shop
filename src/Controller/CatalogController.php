@@ -16,12 +16,12 @@ class CatalogController extends AbstractController
     #[Route('/catalog', name: 'app_catalog')]
     public function index(Request $request, PaginatorInterface $paginator, SellerRepository $sellerRepository, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
-       // dd($request->query->all());
-        $products = $productRepository->findAllWithSearchQuery($request->query->get('query'));
+      //  dd($request->request->all());
+        $products = $productRepository->findFilteredProducts($request->query->all());
         $pagination = $paginator->paginate(
-            $products, /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            8 /*limit per page*/
+            $products,
+            $request->query->getInt('page', 1),
+            8
         );
         $sellers = $sellerRepository->findAll();
       //  dd($request->query->get('query'));
@@ -30,7 +30,6 @@ class CatalogController extends AbstractController
         return $this->render('catalog/index.html.twig', [
             'controller_name' => 'CatalogController',
             'categories'=>$categories,
-         //   'products'=>$products,
             'sellers'=>$sellers,
             'pagination'=>$pagination
         ]);

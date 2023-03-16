@@ -54,6 +54,41 @@ class ProductRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findFilteredProducts(?array $filters) {
+        $qb = $this->createQueryBuilder('p');
+
+        if(!empty($filters['title'])){
+            $title = $filters['title'];
+            $qb
+                ->andWhere('p.name LIKE :title')
+                ->setParameter('title', "%$title%")
+            ;
+        }
+
+        // todo добавить связь продовца с продуктом
+//        if(!empty($filters['seller'])){
+//            $seller= $filters['seller'];
+//            $qb
+//                ->andWhere('p.seller = :seller')
+//                ->setParameter('seller', "%$seller%")
+//            ;
+//        }
+
+        if(!empty($filters['price'])) {
+            $priceArr = explode(";", $filters['price']);
+            $start = $priceArr[0];
+            $end = $priceArr[1];
+          //  dd($priceArr);
+            $qb
+            ->andWhere('p.price BETWEEN ?1 AND ?2')
+                ->setParameter(1, $start)
+                ->setParameter(2, $end)
+            ;
+        }
+
+        return $qb;
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
