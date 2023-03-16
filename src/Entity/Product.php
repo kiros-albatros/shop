@@ -49,7 +49,8 @@ class Product
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\OrderBy(["createdAt" => "DESC"])]
     private Collection $reviews;
 
     public function __construct()

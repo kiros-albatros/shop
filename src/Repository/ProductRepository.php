@@ -39,6 +39,21 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllWithSearchQuery(?string $search){
+        $qb = $this->createQueryBuilder('p');
+
+        if ($search) {
+            $qb
+                ->andWhere('p.name LIKE :search')
+                ->setParameter('search', "%$search%")
+            ;
+        }
+        return $qb
+//            ->getQuery()
+//            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

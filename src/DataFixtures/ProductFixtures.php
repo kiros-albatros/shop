@@ -25,23 +25,25 @@ class ProductFixtures extends BaseFixtures
                 ->setSalesCount($this->faker->numberBetween(1, 200))
                 ;
 
-            $review = (new Review())
-                ->setAuthorName('tester-tester')
-                ->setContent($this->faker->paragraph)
-                ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
-                ->setProduct($product)
-            ;
-
-            $manager->persist($review);
-
-            $review = (new Review())
-                ->setAuthorName('tester-tester')
-                ->setContent($this->faker->paragraph)
-                ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
-                ->setProduct($product)
-            ;
-
-            $manager->persist($review);
+            for ($i = 0; $i < $this->faker->numberBetween(2, 10); $i++) {
+                $this->addReview($product, $manager);
+            }
         });
+    }
+
+    /**
+     * @param Product $product
+     * @param ObjectManager $manager
+     * @return void
+     */
+    function addReview(Product $product, ObjectManager $manager): void
+    {
+        $review = (new Review())
+            ->setAuthorName('tester-tester')
+            ->setContent($this->faker->paragraph)
+            ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
+            ->setProduct($product);
+
+        $manager->persist($review);
     }
 }

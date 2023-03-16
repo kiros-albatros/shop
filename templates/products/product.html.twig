@@ -68,7 +68,7 @@
 								<span>Характеристики</span>
 							</a>
 							<a class="Tabs-link" href="#reviews">
-								<span>Отзывы ({{ product.reviewsCount }})</span>
+								<span>Отзывы ({{ product.reviews|length }})</span>
 							</a>
 						</div>
 						<div class="Tabs-wrap">
@@ -198,18 +198,6 @@
 										<span>
 											Lorem ipsum dolor sit</span>
 									</div>
-									<div class="Product-prop">
-										<strong>dolor sit
-										</strong>
-										<span>
-											5 ans</span>
-									</div>
-									<div class="Product-prop">
-										<strong>psum dolo
-										</strong>
-										<span>
-											2–3 jours</span>
-									</div>
 								</div>
 							</div>
 							<div class="Tabs-block" id="reviews">
@@ -232,6 +220,7 @@
 													<div class="Comment-content">{{ review.content }}</div>
 												</div>
 											</div>
+										</div>
 										</div>
 									{% endfor %}
 								{% endif %}

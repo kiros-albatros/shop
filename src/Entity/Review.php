@@ -5,61 +5,63 @@ namespace App\Entity;
 use App\Repository\ReviewRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {
+    use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $text = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $authorName = null;
 
-    #[ORM\Column]
-    private ?int $product_id = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
 
-    #[ORM\Column]
-    private ?int $user_id = null;
+    #[ORM\ManyToOne(inversedBy: 'reviews')]
+    private ?Product $product = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getAuthorName(): ?string
     {
-        return $this->text;
+        return $this->authorName;
     }
 
-    public function setText(string $text): self
+    public function setAuthorName(?string $authorName): self
     {
-        $this->text = $text;
+        $this->authorName = $authorName;
 
         return $this;
     }
 
-    public function getProductId(): ?int
+    public function getContent(): ?string
     {
-        return $this->product_id;
+        return $this->content;
     }
 
-    public function setProductId(int $product_id): self
+    public function setContent(?string $content): self
     {
-        $this->product_id = $product_id;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getProduct(): ?Product
     {
-        return $this->user_id;
+        return $this->product;
     }
 
-    public function setUserId(int $user_id): self
+    public function setProduct(?Product $product): self
     {
-        $this->user_id = $user_id;
+        $this->product = $product;
 
         return $this;
     }
