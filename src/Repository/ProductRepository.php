@@ -74,17 +74,35 @@ class ProductRepository extends ServiceEntityRepository
 //            ;
 //        }
 
-        if(!empty($filters['price'])) {
-            $priceArr = explode(";", $filters['price']);
-            $start = $priceArr[0];
-            $end = $priceArr[1];
-          //  dd($priceArr);
+        if(!empty($filters['start'])) {
+            $start = $filters['start'];
             $qb
-            ->andWhere('p.price BETWEEN ?1 AND ?2')
+                ->andWhere('p.price > ?1')
                 ->setParameter(1, $start)
-                ->setParameter(2, $end)
+
             ;
         }
+
+        if(!empty($filters['end'])) {
+            $end = $filters['end'];
+            $qb
+                ->andWhere('p.price < ?2')
+                ->setParameter(2, $end)
+
+            ;
+        }
+
+//        if(!empty($filters['price'])) {
+//            $priceArr = explode(";", $filters['price']);
+//            $start = $priceArr[0];
+//            $end = $priceArr[1];
+//          //  dd($priceArr);
+//            $qb
+//            ->andWhere('p.price BETWEEN ?1 AND ?2')
+//                ->setParameter(1, $start)
+//                ->setParameter(2, $end)
+//            ;
+//        }
 
         return $qb;
     }

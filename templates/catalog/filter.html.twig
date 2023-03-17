@@ -5,13 +5,45 @@
 		</header>
 		<div class="Section-columnContent">
 			<form class="form" method="get" action="{{ path('app_catalog') }}">
+					<div class="Sort-title" style="margin-bottom: 20px;">Сортировать по:</div>
+							<div class="form-check" style="margin-bottom: 20px;">
+								<input class="form-check-input" type="radio" name="sort" value="p.sales_count"
+								{% if(app.request.get('sort')== 'p.sales_count') %} checked {% endif %} >
+								<label class="form-check-label" for="flexRadioDefault1">
+									Популярности
+								</label>
+							</div>
+							<div class="form-check" style="margin-bottom: 20px;">
+								<input class="form-check-input" type="radio" name="sort" value="p.price"
+										{% if(app.request.get('sort')== 'p.price') %} checked {% endif %} />
+								<label class="form-check-label" for="flexRadioDefault2">
+									Цене
+								</label>
+							</div>
+							<div class="form-check" style="margin-bottom: 20px;">
+								<input class="form-check-input" type="radio" name="sort" value="p.reviews_count"
+										{% if(app.request.get('sort')== 'p.reviews_count') %} checked {% endif %} >
+								<label class="form-check-label" for="flexRadioDefault2">
+									Отзывам
+								</label>
+							</div>
+
 				<div class="form-group">
-					<div class="range Section-columnRange">
-						<input class="range-line" id="price" name="price" type="text" data-type="double" data-min="1" data-max="2000" data-from="1" data-to="2000"/>
-						<div class="range-price">Цена:&#32;
-							<div class="rangePrice"></div>
-						</div>
+					<label for="" style="margin-bottom: 20px;">Цена</label>
+					<div style="display:flex;">
+						<input class="form-input" type="number" name="start" id="" value="{{ app.request.get('start')|default("") }}"
+							   placeholder="цена от" style="margin-right: 20px;">
+						<input class="form-input" type="number" name="end" id="" value="{{ app.request.get('end')|default("") }}"
+							   placeholder="цена до">
+
 					</div>
+
+{#					<div class="range Section-columnRange">#}
+{#						<input class="range-line" id="price" name="price" type="text" data-type="double" data-min="1" data-max="2000" data-from="1" data-to="2000"/>#}
+{#						<div class="range-price">Цена:&#32;#}
+{#							<div class="rangePrice"></div>#}
+{#						</div>#}
+{#					</div>#}
 				</div>
 				<div class="form-group">
 					<input class="form-input form-input_full" id="title" name="title" type="text" placeholder="Название" value="{{ app.request.get('title')|default("") }}"/>
