@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Product;
 use App\Entity\Review;
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 
 class ProductFixtures extends BaseFixtures
@@ -42,6 +43,7 @@ class ProductFixtures extends BaseFixtures
             ->setAuthorName('tester-tester')
             ->setContent($this->faker->paragraph)
             ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
+            ->setUpdatedAt(new DateTime("now"))
             ->setProduct($product);
 
         $manager->persist($review);
