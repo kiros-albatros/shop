@@ -34,4 +34,13 @@ class CatalogController extends AbstractController
             'pagination'=>$pagination
         ]);
     }
+
+#[Route('/catalog/{category}', name: 'app_catalog_category')]
+public function category(ProductRepository $productRepository, $category, CategoryRepository $categoryRepository,): Response
+{
+    $products = $productRepository->findBy(array('category'=>$category));
+    $categories = $categoryRepository->findAll();
+
+   dd ($products);
+}
 }
