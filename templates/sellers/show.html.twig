@@ -3,7 +3,7 @@
 {% block mainContent %}
 
 	<div class="Middle Middle_top">
-		{% include 'partial/header-line.html.twig' with {'title': 'Продавец ООО "Ромашка"', 'parent': 'Главная'} %}
+		{% include 'partial/header-line.html.twig' with {'title': 'Продавец' , 'parent': 'Главная'} %}
 
 		<div class="Section Section_column Section_columnLeft Section_columnWide">
 			<div class="wrap">
@@ -13,7 +13,7 @@
 							<div class="media-image"><img src="{{ asset('images/icons/contacts/phone.svg')}}" alt="phone.svg">
 							</div>
 							<div class="media-content">Тел:
-								<nobr>+8 (200) 800-2000-600</nobr>
+								<nobr>{{ seller.phone }}</nobr>
 							</div>
 						</div>
 					</div>
@@ -22,14 +22,14 @@
 							<div class="media-image"><img src="{{ asset('images/icons/contacts/address.svg')}}" alt="address.svg">
 							</div>
 							<div class="media-content">
-								У черта на куличиках 12
+								{{ seller.address }}
 							</div>
 						</div>
 					</div>
 					<div class="Section-columnSection Section-columnSection_mark">
 						<div class="media media_middle">
 							<div class="media-image"><img src="{{ asset('images/icons/contacts/mail.svg')}}" alt="mail.svg"></div>
-							<div class="media-content">Email: feedback@romashka.ru</div>
+							<div class="media-content">Email: {{ seller.email }}</div>
 						</div>
 					</div>
 				</div>
@@ -40,23 +40,8 @@
 							</div>
 						</div>
 						<div class="row-block">
-							<h2>ООО "Ромашка"</h2>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit doli. Aenean commodo ligula eget dolor. Aenean massa. Cumtipsu sociis natoque penatibus et magnis dis parturient montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eutu, pretiumem.
-							</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer
-								</li>
-								<li>adipiscing elit doli. Aenean commodo ligula
-								</li>
-								<li>eget dolor. Aenean massa. Cumtipsu sociis
-								</li>
-								<li>natoque penatibus et magnis dis parturient
-								</li>
-								<li>montesti, nascetur ridiculus mus. Donec
-								</li>
-								<li>quam felis, ultricies nec, pellentesque eutu
-								</li>
-							</ul>
+							<h2>{{ seller.name }}</h2>
+							<p>{{ seller.description }}</p>
 						</div>
 					</div>
 					<header class="Section-header">
