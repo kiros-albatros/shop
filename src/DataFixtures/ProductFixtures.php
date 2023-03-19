@@ -2,17 +2,24 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Review;
+use App\Repository\CategoryRepository;
 use DateTime;
 use Doctrine\Persistence\ObjectManager;
 
 class ProductFixtures extends BaseFixtures
 {
+
+//    protected $categoryData = ['Accessories', 'Bags', 'Cameras', 'Clothing', 'Clothing', 'Electronics', 'Fashion', 'Furniture',
+//        'Mobile', 'Trends', 'Other'];
     public function loadData(ObjectManager $manager)
     {
 
         $this->createMany(Product::class, 24, function (Product $product) use ($manager) {
+            $categories = $manager->getRepository(Category::class)->findAll();
+
             $product
                 ->setName($this->faker->word)
                 ->setImage($this->faker->url)
@@ -24,6 +31,7 @@ class ProductFixtures extends BaseFixtures
                 ->setDiscount($this->faker->numberBetween(0, 90))
                 ->setSortIndex($this->faker->numberBetween(1, 100))
                 ->setSalesCount($this->faker->numberBetween(1, 200))
+                ->setCategory($this->faker->randomElement($categories))
                 ;
 
             for ($i = 0; $i < $this->faker->numberBetween(2, 10); $i++) {

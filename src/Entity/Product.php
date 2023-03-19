@@ -46,12 +46,12 @@ class Product
     #[ORM\Column]
     private ?int $sales_count = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $category = null;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class, fetch: 'EXTRA_LAZY')]
     #[ORM\OrderBy(["createdAt" => "DESC"])]
     private Collection $reviews;
+
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    private ?Category $category = null;
 
     public function __construct()
     {
@@ -183,18 +183,6 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Review>
      */
@@ -221,6 +209,18 @@ class Product
                 $review->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
