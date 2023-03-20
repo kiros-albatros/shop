@@ -17,13 +17,13 @@ class ReviewsController extends AbstractController
         ]);
     }
 
-    #[Route('/reviews/add', name: 'app_reviews_add')]
-    public function add(Request $request): Response
-    {
-        $data = $request->request->all();
-        dd ($data);
-        return $this->render('reviews/index.html.twig', [
-            'controller_name' => 'ReviewsController',
-        ]);
-    }
+ //   #[Route('/reviews/add', name: 'app_reviews_add')]
+//    public function add(Request $request): Response
+//    {
+//        $data = $request->request->all();
+//        dd ($data);
+//        return $this->render('reviews/index.html.twig', [
+//            'controller_name' => 'ReviewsController',
+//        ]);
+//    }
 }

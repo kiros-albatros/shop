@@ -35,11 +35,9 @@ class ProfileController extends AbstractController
 
             if ($file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = '/uploads/avatars/'. $safeFilename.'.'.$file->guessExtension();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $file->move(
                         $this->getParameter('avatars_directory'),
@@ -52,10 +50,7 @@ class ProfileController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $user->setAvatar($newFilename);
-            } else {
-                dd('fuck');
             }
-
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);

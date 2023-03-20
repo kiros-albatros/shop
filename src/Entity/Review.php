@@ -25,6 +25,9 @@ class Review
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     private ?Product $product = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $author_email = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Review
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getAuthorEmail(): ?string
+    {
+        return $this->author_email;
+    }
+
+    public function setAuthorEmail(string $author_email): self
+    {
+        $this->author_email = $author_email;
 
         return $this;
     }
