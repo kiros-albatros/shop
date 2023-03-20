@@ -17,7 +17,7 @@ class ProductFixtures extends BaseFixtures
     public function loadData(ObjectManager $manager)
     {
 
-        $this->createMany(Product::class, 24, function (Product $product) use ($manager) {
+        $this->createMany(Product::class, 100, function (Product $product) use ($manager) {
             $categories = $manager->getRepository(Category::class)->findAll();
 
             $product

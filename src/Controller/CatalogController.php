@@ -36,15 +36,23 @@ class CatalogController extends AbstractController
     }
 
 #[Route('/catalog/{category}', name: 'app_catalog_category')]
-public function category(ProductRepository $productRepository, $category, CategoryRepository $categoryRepository,): Response
+public function category($category, Request $request, PaginatorInterface $paginator, SellerRepository $sellerRepository, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
 {
-    $products = $productRepository->findBy(array('category'=>$category));
-    $categories = $categoryRepository->findAll();
+    $products = $productRepository->findFilteredProducts($request->query->all(), $category);
 
-   // dd ($products);
+    $categories = $categoryRepository->findAll();
+    $pagination = $paginator->paginate(
+        $products,
+        $request->query->getInt('page', 1),
+        8
+    );
+  //  dd($pagination);
+    $sellers = $sellerRepository->findAll();
+
     return $this->render('catalog/category.html.twig', [
+        'controller_name' => 'CatalogController',
         'categories'=>$categories,
-        'products'=>$products
+        'pagination'=>$pagination
     ]);
 }
 }

@@ -54,7 +54,7 @@ class ProductRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findFilteredProducts(?array $filters) {
+    public function findFilteredProducts(?array $filters, $category=null) {
         $qb = $this->createQueryBuilder('p');
 
         if(!empty($filters['title'])){
@@ -90,6 +90,15 @@ class ProductRepository extends ServiceEntityRepository
                 ->setParameter(2, $end)
 
             ;
+        }
+
+        //  ->setParameter('category', "%$category%")
+
+        if ($category != null) {
+            $qb
+                ->andWhere('p.category = :category')
+                ->setParameter('category', $category)
+                ;
         }
 
 //        if(!empty($filters['price'])) {
