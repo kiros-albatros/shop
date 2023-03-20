@@ -41,6 +41,10 @@ public function category(ProductRepository $productRepository, $category, Catego
     $products = $productRepository->findBy(array('category'=>$category));
     $categories = $categoryRepository->findAll();
 
-   dd ($products);
+   // dd ($products);
+    return $this->render('catalog/category.html.twig', [
+        'categories'=>$categories,
+        'products'=>$products
+    ]);
 }
 }
