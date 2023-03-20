@@ -4,11 +4,20 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends BaseFixtures
 {
 
-private static $avatars =[
+    private $userPasswordHasher;
+
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $this->userPasswordHasher = $userPasswordHasher;
+    }
+
+
+    private static $avatars =[
 'uploads/avatars/bulgakov.jpg',
 'uploads/avatars/Chekhov.jpg',
 'uploads/avatars/gogol.jpg',
@@ -19,15 +28,14 @@ private static $avatars =[
 
     public function loadData(ObjectManager $manager)
     {
-
-
-
-
         $this->createMany(User::class, 10, function (User $user) use ($manager) {
             $user
                 ->setEmail($this->faker->email)
                 ->setName($this->faker->name)
-                ->setPassword('123456')
+                ->setPassword( $this->userPasswordHasher->hashPassword(
+                    $user,
+                    123456
+                ))
                 ->setPhone($this->faker->phoneNumber)
                 ->setAvatar($this->faker->randomElement(self::$avatars))
             ;

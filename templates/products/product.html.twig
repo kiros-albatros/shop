@@ -64,50 +64,13 @@
 							<a class="Tabs-link" href="#sellers">
 								<span>Продавцы</span>
 							</a>
-							<a class="Tabs-link" href="#addit">
-								<span>Характеристики</span>
-							</a>
 							<a class="Tabs-link" href="#reviews">
 								<span>Отзывы ({{ product.reviews|length }})</span>
 							</a>
 						</div>
 						<div class="Tabs-wrap">
 							<div class="Tabs-block" id="description">
-								<h2>Megano Store Hystory
-								</h2>
-								<p>Lorem ipsum dolor sit amet, consectetuer&#32;
-									<strong>adipiscing
-									</strong>&#32;elit doli. Aenean commodo ligula eget dolor. Aenean massa.&#32;<a href="#">Cumtipsu</a>&#32;sociis natoque penatibus et magnis dis parturient montesti, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eutu, pretiumem.
-								</p><img class="pict pict_right" src="{{ asset ('images/content/home/bigGoods.png')}}" alt="bigGoods.png"/>
-								<ul>
-									<li>Lorem ipsum dolor sit amet, consectetuer
-									</li>
-									<li>adipiscing elit doli.&#32;<em>Aenean</em>&#32;commodo ligula
-									</li>
-									<li>eget dolor. Aenean massa. Cumtipsu sociis
-									</li>
-									<li>natoque penatibus et magnis dis parturient
-									</li>
-									<li>montesti, nascetur ridiculus mus. Donec
-									</li>
-									<li>quam felis, ultricies nec, pellentesque eutu
-									</li>
-								</ul>
-								<div class="clearfix"></div>
-								<div class="table">
-									<table>
-										<tr>
-											<th>Табличка внутри описания</th>
-											<th>Значение
-											</th>
-										</tr>
-										<tr>
-											<td>ываыв</td>
-											<td>llslssl
-											</td>
-										</tr>
-									</table>
-								</div>
+								{{ product.description }}
 							</div>
 							<div class="Tabs-block" id="sellers">
 								<div class="Categories Categories_product">
@@ -181,22 +144,6 @@
 											<a class="btn btn_primary" href="#"><img class="btn-icon" src="{{ asset ('images/icons/card/cart_white.svg')}}" alt="cart_white.svg"/><span class="btn-content">Купить</span>
 											</a>
 										</div>
-									</div>
-								</div>
-							</div>
-							<div class="Tabs-block" id="addit">
-								<div class="Product-props">
-									<div class="Product-prop">
-										<strong>Lorem
-										</strong>
-										<span>
-											Pfizer</span>
-									</div>
-									<div class="Product-prop">
-										<strong>ipsum
-										</strong>
-										<span>
-											Lorem ipsum dolor sit</span>
 									</div>
 								</div>
 							</div>
