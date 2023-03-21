@@ -17,7 +17,7 @@ class ProductFixtures extends BaseFixtures
     public function loadData(ObjectManager $manager)
     {
 
-        $this->createMany(Product::class, 100, function (Product $product) use ($manager) {
+        $this->createMany(Product::class, 24, function (Product $product) use ($manager) {
             $categories = $manager->getRepository(Category::class)->findAll();
 
             $product
@@ -48,7 +48,8 @@ class ProductFixtures extends BaseFixtures
     function addReview(Product $product, ObjectManager $manager): void
     {
         $review = (new Review())
-            ->setAuthorName('tester-tester')
+            ->setAuthorName($this->faker->name)
+            ->setAuthorEmail($this->faker->email)
             ->setContent($this->faker->paragraph)
             ->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 day'))
             ->setUpdatedAt(new DateTime("now"))

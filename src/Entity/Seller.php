@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SellerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,19 @@ class Seller
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'seller', targetEntity: SellerProduct::class)]
+    private Collection $sellerProducts;
+
+    public function __construct()
+    {
+        $this->sellerProducts = new ArrayCollection();
+    }
+
+//    /**
+//     * @ORM\OneToMany(targetEntity="App\Entity\SellerProduct", mappedBy="seller")
+//     */
+//    private $sellerPrices;
 
     public function getId(): ?int
     {
@@ -105,6 +120,36 @@ class Seller
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SellerProduct>
+     */
+    public function getSellerProducts(): Collection
+    {
+        return $this->sellerProducts;
+    }
+
+    public function addSellerProduct(SellerProduct $sellerProduct): self
+    {
+        if (!$this->sellerProducts->contains($sellerProduct)) {
+            $this->sellerProducts->add($sellerProduct);
+            $sellerProduct->setSeller($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSellerProduct(SellerProduct $sellerProduct): self
+    {
+        if ($this->sellerProducts->removeElement($sellerProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($sellerProduct->getSeller() === $this) {
+                $sellerProduct->setSeller(null);
+            }
+        }
 
         return $this;
     }

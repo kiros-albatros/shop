@@ -46,6 +46,11 @@ class Product
     #[ORM\Column]
     private ?int $sales_count = null;
 
+//    /**
+//     * @ORM\OneToMany(targetEntity="App\Entity\SellerProduct", mappedBy="product")
+//     */
+//    private $productPrices;
+
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class, fetch: 'EXTRA_LAZY')]
     #[ORM\OrderBy(["createdAt" => "DESC"])]
     private Collection $reviews;
@@ -53,9 +58,13 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'product')]
     private ?Category $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: SellerProduct::class)]
+    private Collection $sellerProducts;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->sellerProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +230,36 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SellerProduct>
+     */
+    public function getSellerProducts(): Collection
+    {
+        return $this->sellerProducts;
+    }
+
+    public function addSellerProduct(SellerProduct $sellerProduct): self
+    {
+        if (!$this->sellerProducts->contains($sellerProduct)) {
+            $this->sellerProducts->add($sellerProduct);
+            $sellerProduct->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSellerProduct(SellerProduct $sellerProduct): self
+    {
+        if ($this->sellerProducts->removeElement($sellerProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($sellerProduct->getProduct() === $this) {
+                $sellerProduct->setProduct(null);
+            }
+        }
 
         return $this;
     }

@@ -9,8 +9,6 @@ class SellerFixtures extends BaseFixtures
 {
     public function loadData(ObjectManager $manager)
     {
-
-
         $this->createMany(Seller::class, 10, function (Seller $seller) use ($manager) {
             $seller
                 ->setName($this->faker->company)
