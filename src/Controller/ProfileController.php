@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ProfileEditFormType;
+use App\Repository\CategoryRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -14,16 +15,19 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile_index')]
-    public function index(): Response
+    public function index(CategoryRepository $categoryRepository,): Response
     {
+        $categories = $categoryRepository->findAll();
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
+            'categories'=>$categories
         ]);
     }
 
     #[Route('/profile/edit', name: 'app_profile_edit')]
-    public function profile(Request $request,  ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+    public function profile(Request $request, CategoryRepository $categoryRepository,  ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
+        $categories = $categoryRepository->findAll();
         $user = $this->getUser();
         $form = $this->createForm(ProfileEditFormType::class, $user);
         $form->handleRequest($request);
@@ -61,7 +65,8 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/edit.html.twig', [
             'controller_name' => 'ProfileController',
-            'form'=>$form->createView()
+            'form'=>$form->createView(),
+            'categories'=>$categories
         ]);
     }
 }

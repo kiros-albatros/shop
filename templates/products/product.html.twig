@@ -176,7 +176,9 @@
 									<h3 class="Section-title">Оставить отзыв</h3>
 								</header>
 								<div class="Tabs-addComment">
-									{{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+									{% if app.user.email|default(false) %}
+										{{ form_start(form, {'attr': {'class': 'form'}}) }}
 										<div class="form-group">
 											{{ form_row(form.content) }}
 										</div>
@@ -199,7 +201,13 @@
 										<div class="form-group">
 											<button class="btn btn_muted" type="submit">Оставить отзыв</button>
 										</div>
-									{{ form_end(form) }}
+										{{ form_end(form) }}
+
+										{% else %}
+										<p>Авторизуйтесь, чтобы добавить отзыв</p>
+									{% endif %}
+
+
 								</div>
 							</div>
 						</div>

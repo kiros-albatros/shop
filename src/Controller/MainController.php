@@ -17,7 +17,6 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(ProductRepository $productRepository, BannerRepository $bannerRepository, CategoryRepository $categoryRepository): Response
     {
-        // аццкий костыль - переделать в сервис?
         $categories = $categoryRepository->findAll();
         $banners = $bannerRepository->findBy(['is_active' => 1]);
         $bannersToShow = [];
