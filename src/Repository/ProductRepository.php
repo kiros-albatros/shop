@@ -49,8 +49,6 @@ class ProductRepository extends ServiceEntityRepository
             ;
         }
         return $qb
-//            ->getQuery()
-//            ->getResult()
             ;
     }
 
@@ -116,28 +114,16 @@ class ProductRepository extends ServiceEntityRepository
         return $qb;
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
+//    public function getProductSellers($id) {
+//        $qb = $this->createQueryBuilder('p');
+//        $qb
+//        ->leftJoin('p.sellerProducts', 'sp')
+//            ->addSelect('sp')
+//            ->andWhere('sp.product = :id')
+//            ->setParameter('id', '%'.$id.'%')
 //            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
+//            ->getResult();
+//
+//        return $qb;
 //    }
 }

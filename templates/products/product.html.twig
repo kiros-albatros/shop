@@ -74,24 +74,30 @@
 							</div>
 							<div class="Tabs-block" id="sellers">
 								<div class="Categories Categories_product">
-									<div class="Categories-row">
-										<div class="Categories-block Categories-block_info">
-											<div class="Categories-info">
-												<strong>Очень дешево
-												</strong>
+									{% if sellers %}
+
+										{% for seller in sellers %}
+											<div class="Categories-row">
+												<div class="Categories-block Categories-block_info">
+													<div class="Categories-info">
+														<a href="{{ path('app_seller_show', {'slug' : seller.id}) }}">{{ seller.name }}
+														</a>
+													</div>
+												</div>
+												<div class="Categories-splitProps"></div>
+												<div class="Categories-block Categories-price">
+													<strong>250
+													</strong>
+												</div>
+												<div class="Categories-block Categories-button">
+													<a class="btn btn_primary" href="#">
+														<img class="btn-icon" src="{{ asset ('images/icons/card/cart_white.svg')}}" alt="cart_white.svg"/><span class="btn-content">Купить</span>
+													</a>
+												</div>
 											</div>
-										</div>
-										<div class="Categories-splitProps"></div>
-										<div class="Categories-block Categories-price">
-											<strong>€&#32;40.58
-											</strong>
-										</div>
-										<div class="Categories-block Categories-button">
-											<a class="btn btn_primary" href="#">
-                                            <img class="btn-icon" src="{{ asset ('images/icons/card/cart_white.svg')}}" alt="cart_white.svg"/><span class="btn-content">Купить</span>
-											</a>
-										</div>
-									</div>
+										{% endfor %}
+
+									{% endif %}
 									<div class="Categories-row">
 										<div class="Categories-block Categories-block_info">
 											<div class="Categories-info">
