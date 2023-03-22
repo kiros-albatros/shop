@@ -80,13 +80,13 @@
 											<div class="Categories-row">
 												<div class="Categories-block Categories-block_info">
 													<div class="Categories-info">
-														<a href="{{ path('app_seller_show', {'slug' : seller.id}) }}">{{ seller.name }}
+														<a href="{{ path('app_seller_show', {'slug' : seller.sellerId}) }}">{{ seller.sellerName }}
 														</a>
 													</div>
 												</div>
 												<div class="Categories-splitProps"></div>
 												<div class="Categories-block Categories-price">
-													<strong>250
+													<strong>{{ seller.price }}
 													</strong>
 												</div>
 												<div class="Categories-block Categories-button">

@@ -12,7 +12,7 @@ class SellerProductFixtures extends BaseFixtures implements DependentFixtureInte
 {
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(SellerProduct::class, 100, function (SellerProduct $sellerProduct) use ($manager) {
+        $this->createMany(SellerProduct::class, 200, function (SellerProduct $sellerProduct) use ($manager) {
             $sellerProduct
                 ->setPrice($this->faker->numberBetween(100, 2000))
                 ->setSeller($this->getRandomReference(Seller::class))

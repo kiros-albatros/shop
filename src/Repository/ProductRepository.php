@@ -113,17 +113,4 @@ class ProductRepository extends ServiceEntityRepository
 
         return $qb;
     }
-
-//    public function getProductSellers($id) {
-//        $qb = $this->createQueryBuilder('p');
-//        $qb
-//        ->leftJoin('p.sellerProducts', 'sp')
-//            ->addSelect('sp')
-//            ->andWhere('sp.product = :id')
-//            ->setParameter('id', '%'.$id.'%')
-//            ->getQuery()
-//            ->getResult();
-//
-//        return $qb;
-//    }
 }

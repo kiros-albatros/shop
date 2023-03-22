@@ -27,14 +27,19 @@ class ProductsController extends AbstractController
         $categories = $categoryRepository->findAll();
         $product = $productRepository->find($slug);
         $sellersInfo = $entityManager->getRepository(SellerProduct::class)->findBy(['product'=>$slug]);
+      //  dd ($sellersInfo);
         $sellers = [];
         for ($i = 0; $i < count($sellersInfo); $i++) {
-            $sellerId = $sellersInfo[$i]->getSeller()->getId();
-            $sellers[] = $entityManager->getRepository(Seller::class)->find($sellerId);
+            $sellerName = $sellersInfo[$i]->getSeller()->getName();
+            $seller = $sellersInfo[$i]->getSeller()->getId();
+            $price = $sellersInfo[$i]->getPrice();
+            $sellers[] = ['price'=>$price, 'sellerId'=>$seller, 'sellerName'=>$sellerName];
+         //   $sellerId = $sellersInfo[$i]->getSeller()->getId();
+         //   $sellers[] = $entityManager->getRepository(Seller::class)->find($sellerId);
         }
 
        // $sellers = $productRepository->getProductSellers($slug);
-     //   dd ($sellers);
+       // dd ($sellers);
        // dd($product);
 
         $review = new Review();
