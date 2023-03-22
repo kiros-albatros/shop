@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Review;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Product;
 use App\Entity\Seller;
@@ -34,13 +35,16 @@ class SellerProductFixtures extends BaseFixtures implements DependentFixtureInte
             $foundRows = $manager->getRepository(SellerProduct::class)->findBy(['product'=>$product]);
             $counter = count($foundRows);
             $product->setSellersCount($counter);
-
+            $reviewCounter = $manager->getRepository(Review::class)->findBy(['product'=>$product->getId()]);
+            $product->setReviewsCount(count($reviewCounter));
             if ($counter !== 0){
                 foreach ($foundRows as $row) {
                     $price += $row->getPrice();
                 }
                 $middlePrice = round($price/$counter);
                 $product->setPrice($middlePrice);
+            } else {
+                $product->setPrice(0);
             }
         }
     }
