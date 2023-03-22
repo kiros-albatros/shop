@@ -12,15 +12,21 @@ class SellerProductFixtures extends BaseFixtures implements DependentFixtureInte
 {
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(SellerProduct::class, 200, function (SellerProduct $sellerProduct) use ($manager) {
-            $sellerProduct
-                ->setPrice($this->faker->numberBetween(100, 2000))
-                ->setSeller($this->getRandomReference(Seller::class))
-                ->setProduct($this->getRandomReference(Product::class))
-            ;
-
-            $manager->persist($sellerProduct);
-        });
+        for ($i = 0; $i < 100; $i++) {
+            $sellerProduct = new SellerProduct();
+            $randomSeller = $this->getRandomReference(Seller::class);
+            $randomProduct = $this->getRandomReference(Product::class);
+            $item = $manager->getRepository(SellerProduct::class)->findBy(['seller'=>$randomSeller, 'product'=>$randomProduct]);
+            if (empty($item)) {
+                $sellerProduct
+                    ->setPrice($this->faker->numberBetween(100, 2000))
+                    ->setSeller($randomSeller)
+                    ->setProduct($randomProduct)
+                ;
+                $manager->persist($sellerProduct);
+                $manager->flush();
+            }
+        }
     }
 
     public function getDependencies(): array

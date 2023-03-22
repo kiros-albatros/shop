@@ -53,38 +53,6 @@ class SellerProduct
         return $this;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getSeller()
-//    {
-//        return $this->seller;
-//    }
-//
-//    /**
-//     * @param mixed $seller
-//     */
-//    public function setSeller($seller): void
-//    {
-//        $this->seller = $seller;
-//    }
-//
-//    /**
-//     * @return mixed
-//     */
-//    public function getProduct()
-//    {
-//        return $this->product;
-//    }
-//
-//    /**
-//     * @param mixed $product
-//     */
-//    public function setProduct($product): void
-//    {
-//        $this->product = $product;
-//    }
-
 public function getSeller(): ?Seller
 {
     return $this->seller;

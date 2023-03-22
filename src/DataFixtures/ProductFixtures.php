@@ -21,7 +21,7 @@ class ProductFixtures extends BaseFixtures
             $categories = $manager->getRepository(Category::class)->findAll();
 
             $product
-                ->setName($this->faker->word)
+                ->setName($this->faker->unique()->word)
                 ->setImage($this->faker->url)
                 ->setDescription($this->faker->paragraph(45))
                 ->setPrice($this->faker->numberBetween(1, 2000))
