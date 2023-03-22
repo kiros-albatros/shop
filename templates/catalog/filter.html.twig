@@ -54,7 +54,7 @@
 {#						<option value="all">Все</option>#}
 						{% if sellers %}
 							{% for seller in sellers %}
-								<option value="{{ seller.id }}">{{ seller.name }}</option>
+								<option value="{{ seller.id }}" {% if seller.id == app.request.get('seller')|default("") %} selected {% endif %}>{{ seller.name }}</option>
 							{% endfor %}
 						{% endif %}
 					</select>

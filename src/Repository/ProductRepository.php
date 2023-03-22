@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\SellerProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -63,15 +64,6 @@ class ProductRepository extends ServiceEntityRepository
             ;
         }
 
-        // todo добавить связь продовца с продуктом
-//        if(!empty($filters['seller'])){
-//            $seller= $filters['seller'];
-//            $qb
-//                ->andWhere('p.seller = :seller')
-//                ->setParameter('seller', "%$seller%")
-//            ;
-//        }
-
         if(!empty($filters['start'])) {
             $start = $filters['start'];
             $qb
@@ -97,6 +89,15 @@ class ProductRepository extends ServiceEntityRepository
                 ->andWhere('p.category = :category')
                 ->setParameter('category', $category)
                 ;
+        }
+
+        if(!empty($filters['seller'])){
+            $seller= $filters['seller'];
+            $qb
+                ->innerJoin(SellerProduct::class, 'sp', 'with', 'p.id = sp.product')
+                ->andWhere('sp.seller = :seller')
+                ->setParameter('seller', $seller)
+            ;
         }
 
 //        if(!empty($filters['price'])) {
