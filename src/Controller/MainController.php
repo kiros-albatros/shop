@@ -19,11 +19,15 @@ class MainController extends AbstractController
     {
         $categories = $categoryRepository->findAll();
         $banners = $bannerRepository->findBy(['is_active' => 1]);
+        $counterLimit = count($banners);
+        if ($counterLimit > 2) {
+            $counterLimit = 2;
+        }
         $bannersToShow = [];
         $topProducts = $productRepository->findBy([],['sort_index'=>'DESC'], 8);
       //  dd($topProducts);
 
-        for ($i=0; $i <= 2; $i++) { 
+        for ($i=0; $i <= $counterLimit; $i++) {
             $rand_index = rand(0, count($banners)-1);
             $rand_banner = $banners[$rand_index];
             $bannersToShow[]=$rand_banner;
