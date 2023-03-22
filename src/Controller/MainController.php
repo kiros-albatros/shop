@@ -45,20 +45,24 @@ class MainController extends AbstractController
     }
 
     #[Route('/about', name: 'app_about')]
-    public function about(): Response
+    public function about(CategoryRepository $categoryRepository): Response
     {
+        $categories = $categoryRepository->findAll();
         return $this->render('pages/about.html.twig', [
             'controller_name' => 'MainController',
-            'is_main' => false
+            'is_main' => false,
+            'categories' => $categories,
         ]);
     }
 
     #[Route('/contacts', name: 'app_contacts')]
-    public function contact(): Response
+    public function contact(CategoryRepository $categoryRepository): Response
     {
+        $categories = $categoryRepository->findAll();
         return $this->render('pages/contacts.html.twig', [
             'controller_name' => 'MainController',
-            'is_main' => false
+            'is_main' => false,
+            'categories' => $categories,
         ]);
     }
 }

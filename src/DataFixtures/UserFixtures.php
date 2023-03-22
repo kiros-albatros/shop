@@ -18,12 +18,12 @@ class UserFixtures extends BaseFixtures
 
 
     private static $avatars =[
-'uploads/avatars/bulgakov.jpg',
+'uploads/avatars/bulgakov.png',
 'uploads/avatars/Chekhov.jpg',
 'uploads/avatars/gogol.jpg',
 'uploads/avatars/london.jpg',
-'uploads/avatars/mayakovski.jpg',
-'uploads/avatars/pushkin.jpg',
+'uploads/avatars/mayakovski.jpeg',
+'uploads/avatars/pushkin.jpeg',
 ];
 
     public function loadData(ObjectManager $manager)
