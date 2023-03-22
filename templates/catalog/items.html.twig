@@ -3,7 +3,7 @@
         <div class="Cards">
             {% for product in pagination %}
                 <div class="Card">
-                    <a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg') }}"
+                    <a class="Card-picture" href="#"><img src="{{ asset(product.image) }}"
                                                           alt="card.jpg"></a>
                     <div class="Card-content">
                         <strong class="Card-title">

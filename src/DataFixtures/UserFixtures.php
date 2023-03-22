@@ -17,14 +17,14 @@ class UserFixtures extends BaseFixtures
     }
 
 
-    private static $avatars =[
-'uploads/avatars/bulgakov.png',
-'uploads/avatars/Chekhov.jpg',
-'uploads/avatars/gogol.jpg',
-'uploads/avatars/london.jpg',
-'uploads/avatars/mayakovski.jpeg',
-'uploads/avatars/pushkin.jpeg',
-];
+    private static $avatars = [
+        'uploads/avatars/bulgakov.png',
+        'uploads/avatars/Chekhov.jpg',
+        'uploads/avatars/gogol.jpg',
+        'uploads/avatars/london.jpg',
+        'uploads/avatars/mayakovski.jpeg',
+        'uploads/avatars/pushkin.jpeg',
+    ];
 
     public function loadData(ObjectManager $manager)
     {
@@ -32,13 +32,12 @@ class UserFixtures extends BaseFixtures
             $user
                 ->setEmail($this->faker->email)
                 ->setName($this->faker->name)
-                ->setPassword( $this->userPasswordHasher->hashPassword(
+                ->setPassword($this->userPasswordHasher->hashPassword(
                     $user,
                     123456
                 ))
                 ->setPhone($this->faker->phoneNumber)
-                ->setAvatar($this->faker->randomElement(self::$avatars))
-            ;
+                ->setAvatar($this->faker->randomElement(self::$avatars));
 
             $manager->persist($user);
         });

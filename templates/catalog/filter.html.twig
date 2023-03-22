@@ -4,7 +4,7 @@
 			<strong class="Section-title">Фильтр</strong>
 		</header>
 		<div class="Section-columnContent">
-			<form class="form" method="get" action="{{ path('app_catalog') }}">
+			<form class="form" method="get" {% if category|default(false) %} action="{{ path('app_catalog_category', {'category': category }) }}" {% else %} action="{{ path('app_catalog') }}" {% endif %}>
 					<div class="Sort-title" style="margin-bottom: 20px;">Сортировать по:</div>
 							<div class="form-check" style="margin-bottom: 20px;">
 								<input class="form-check-input" type="radio" name="sort" value="p.sales_count"
@@ -35,15 +35,8 @@
 							   placeholder="цена от" style="margin-right: 20px;">
 						<input class="form-input" type="number" name="end" id="" value="{{ app.request.get('end')|default("") }}"
 							   placeholder="цена до">
-
 					</div>
 
-{#					<div class="range Section-columnRange">#}
-{#						<input class="range-line" id="price" name="price" type="text" data-type="double" data-min="1" data-max="2000" data-from="1" data-to="2000"/>#}
-{#						<div class="range-price">Цена:&#32;#}
-{#							<div class="rangePrice"></div>#}
-{#						</div>#}
-{#					</div>#}
 				</div>
 				<div class="form-group">
 					<input class="form-input form-input_full" id="title" name="title" type="text" placeholder="Название" value="{{ app.request.get('title')|default("") }}"/>
@@ -61,7 +54,7 @@
 				</div>
 				<div class="form-group">
 					<div class="d-flex flex-nowrap">
-						<a href="{{ path('app_catalog') }}" class="btn btn_square btn_dark btn_narrow">Сбросить</a>
+						<a {% if category|default(false) %} href="{{ path('app_catalog_category', {'category': category }) }}" {% else %} href="{{ path('app_catalog') }}" {% endif %} class="btn btn_square btn_dark btn_narrow">Сбросить</a>
 						<button type="submit" class="btn btn_square btn_dark btn_narrow">Применить</button>
 {#						<a class="btn btn_square btn_dark btn_narrow" href="#">Применить</a>#}
 					</div>

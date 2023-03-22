@@ -12,17 +12,21 @@ use Doctrine\Persistence\ObjectManager;
 class ProductFixtures extends BaseFixtures
 {
 
-//    protected $categoryData = ['Accessories', 'Bags', 'Cameras', 'Clothing', 'Clothing', 'Electronics', 'Fashion', 'Furniture',
-//        'Mobile', 'Trends', 'Other'];
+    private static $images = [
+        'images/content/home/card.jpg',
+        'images/content/home/videoca.png',
+        'images/content/home/slider.png',
+        'images/content/home/bigGoods.png',
+    ];
     public function loadData(ObjectManager $manager)
     {
 
-        $this->createMany(Product::class, 40, function (Product $product) use ($manager) {
+        $this->createMany(Product::class, 100, function (Product $product) use ($manager) {
             $categories = $manager->getRepository(Category::class)->findAll();
 
             $product
                 ->setName($this->faker->unique()->word)
-                ->setImage($this->faker->url)
+                ->setImage($this->faker->randomElement(self::$images))
                 ->setDescription($this->faker->paragraph(45))
                 ->setPrice($this->faker->numberBetween(1, 2000))
                 ->setReviewsCount($this->faker->numberBetween(0, 10))

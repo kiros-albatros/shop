@@ -9,7 +9,7 @@
 				{% if topProducts %}
 					{% for product in topProducts %}
 						<div class="Card">
-							<a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg')}}" alt="card.jpg"></a>
+							<a class="Card-picture" href="#"><img src="{{ asset(product.image)}}" alt="card.jpg"></a>
 							<div class="Card-content">
 								<strong class="Card-title">
 									<a href="{{ path ('app_product_show', { slug: product.id} ) }}">{{ product.name }}</a>

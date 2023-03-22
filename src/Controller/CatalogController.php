@@ -39,7 +39,7 @@ class CatalogController extends AbstractController
 public function category($category, Request $request, PaginatorInterface $paginator, SellerRepository $sellerRepository, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
 {
     $products = $productRepository->findFilteredProducts($request->query->all(), $category);
-
+    $sellers = $sellerRepository->findAll();
     $categories = $categoryRepository->findAll();
     $pagination = $paginator->paginate(
         $products,
@@ -52,7 +52,9 @@ public function category($category, Request $request, PaginatorInterface $pagina
     return $this->render('catalog/category.html.twig', [
         'controller_name' => 'CatalogController',
         'categories'=>$categories,
-        'pagination'=>$pagination
+        'sellers'=>$sellers,
+        'pagination'=>$pagination,
+        'category'=>$category
     ]);
 }
 }
