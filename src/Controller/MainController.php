@@ -26,7 +26,8 @@ class MainController extends AbstractController
             $counterLimit = 2;
         }
         $bannersToShow = [];
-        $topProducts = $productRepository->findBy([],['sort_index'=>'DESC'], 8);
+     //   $topProducts = $productRepository->findBy([],['sort_index'=>'DESC'], 8);
+        $topProducts = $productRepository->findTop();
       //  dd($topProducts);
 
         for ($i=0; $i <= $counterLimit; $i++) {

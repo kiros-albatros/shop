@@ -53,8 +53,23 @@ class ProductRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findTop() {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.price > ?0')
+            ->setParameter(0, 0)
+            ->setMaxResults(8)
+            ->orderBy('p.sort_index', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $qb;
+    }
+
     public function findFilteredProducts(?array $filters, $category=null) {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.price > ?0')
+            ->setParameter(0, 0);
 
         if(!empty($filters['title'])){
             $title = $filters['title'];
