@@ -27,6 +27,22 @@ class SellerProductFixtures extends BaseFixtures implements DependentFixtureInte
                 $manager->flush();
             }
         }
+
+        $products = $manager->getRepository(Product::class)->findAll();
+        foreach ($products as $product) {
+            $price = 0;
+            $foundRows = $manager->getRepository(SellerProduct::class)->findBy(['product'=>$product]);
+            $counter = count($foundRows);
+            $product->setSellersCount($counter);
+
+            if ($counter !== 0){
+                foreach ($foundRows as $row) {
+                    $price += $row->getPrice();
+                }
+                $middlePrice = round($price/$counter);
+                $product->setPrice($middlePrice);
+            }
+        }
     }
 
     public function getDependencies(): array

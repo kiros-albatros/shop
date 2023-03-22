@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\BannerRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Repository\SellerProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,9 @@ class MainController extends AbstractController
     protected $banners;
 
     #[Route('/', name: 'app_main')]
-    public function index(ProductRepository $productRepository, BannerRepository $bannerRepository, CategoryRepository $categoryRepository): Response
+    public function index(ProductRepository $productRepository, SellerProductRepository $sellerProductRepository,  BannerRepository $bannerRepository, CategoryRepository $categoryRepository): Response
     {
+
         $categories = $categoryRepository->findAll();
         $banners = $bannerRepository->findBy(['is_active' => 1]);
         $counterLimit = count($banners);

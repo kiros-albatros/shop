@@ -50,7 +50,7 @@
 					<div class="Cards">
 
 						{% if products %}
-							{% for product in products %}
+							{% for product in products|sort((a, b) => a.info.salesCount <=> b.info.salesCount )|slice(0, 10) %}
 								<div class="Card">
 									<a class="Card-picture" href="#"><img src="{{ asset('images/content/home/card.jpg')}}" alt="card.jpg"></a>
 									<div class="Card-content">
